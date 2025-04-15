@@ -1,17 +1,20 @@
-import Image from 'next/image';
+import styled from 'styled-components';
+import Header from '../components/Header';
 
 
-function Home() {
-    return <div>Dra Vitória Santos
-        <Image 
-        src="/files/LOGOTIPO.png"
-        alt="logo consult[orio"
-        width={300}
-        height={400}
-        style={{ borderRadius: '1rem' }}
-        />
-
-    </div>
+export default function Home() {
+  return (
+    <MainContainer>
+      <div>
+        <Header></Header>
+      </div>
+    </MainContainer>
+  );
 }
 
-export default Home;
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+`;

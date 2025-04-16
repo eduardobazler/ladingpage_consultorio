@@ -24,6 +24,7 @@ export default function Header() {
           <a style={{color: '#E0CA90' }} href="#casos">Casos</a>
           <a style={{color: '#E0CA90' }} href="#depoimentos">Depoimentos</a>
           <a style={{color: '#E0CA90' }} href="#endereco">Endereço</a>
+          
         </NavLinks>
       </NavContainer>
     </Nav>

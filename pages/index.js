@@ -4,6 +4,7 @@ import AboutSection from '../components/AboutSection';
 import FaqSection from '../components/FaqSection';
 import GoogleReviews from '../components/GoogleReviews';
 import ContactSection from '../components/ContactSection';
+import ImageCarousel from '../components/ImageCarousel';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <AboutSection />
         <FaqSection />
         <GoogleReviews />
+        <ImageCarousel />
     </MainContainer>
   );
 }

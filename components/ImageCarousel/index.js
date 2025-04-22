@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
 
 const images = [
   'cases/caso1.JPEG',
@@ -17,6 +19,8 @@ const images = [
 ];
 
 export default function ImageCarousel() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <CarouselSection>
       <StyledSwiper
@@ -28,12 +32,20 @@ export default function ImageCarousel() {
       >
         {images.map((src, index) => (
           <SwiperSlideStyled key={index}>
-            <ImageContainer>
+            <ImageContainer onClick={() => setSelectedImage(src)}>
               <img src={src} alt={`Caso ${index + 1}`} />
             </ImageContainer>
           </SwiperSlideStyled>
         ))}
       </StyledSwiper>
+
+      {selectedImage && (
+        <Overlay onClick={() => setSelectedImage(null)}>
+          <Modal>
+            <img src={selectedImage} alt="Zoom" />
+          </Modal>
+        </Overlay>
+      )}
     </CarouselSection>
   );
 }
@@ -64,5 +76,45 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+const Modal = styled.div`
+  max-width: 90%;
+  max-height: 90%;
+  animation: fadeInZoom 0.3s ease;
+
+  img {
+  max-height: 90vh; /* 🔥 altura máxima visível */
+  max-width: 90vw;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  object-fit: contain;
+  }
+
+  @keyframes fadeInZoom {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 `;
